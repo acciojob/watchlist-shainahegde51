@@ -13,7 +13,7 @@ public class MovieRepository {
     HashMap<String,Movie>ListOfMovies = new HashMap<>();
     HashMap<String,Director>ListOfDirectors = new HashMap<>();
     HashMap<String, List<String>> MovieAndDirector =new HashMap<>();
-    List<String>movieList;
+
     public void Addmovie(Movie m){
         ListOfMovies.put(m.getName(),m);
     }
@@ -21,9 +21,11 @@ public class MovieRepository {
         ListOfDirectors.put(d.getName(),d);
     }
     public void addMovieAndDirectorInDB(String directorName,String movieName ){
-        movieList=new ArrayList<>();
+        List<String>movieList=new ArrayList<>();
         if (MovieAndDirector.containsKey(directorName)){
            movieList=MovieAndDirector.get(directorName);
+           movieList.add(movieName);
+           MovieAndDirector.put(directorName,movieList);
         }
         else {
             movieList.add(movieName);
