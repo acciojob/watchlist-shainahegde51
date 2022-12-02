@@ -36,7 +36,7 @@ public class MovieService {
     }
 
     public List<String> findAllMovies(){
-        return movieRepository.findAllMovies();
+        return movieRepository.getAllMovies();
     }
     public void deleteDirectorByName(String name){
         movieRepository.deleteDirectorByName(name);

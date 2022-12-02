@@ -24,13 +24,9 @@ public class MovieRepository {
         List<String>movieList=new ArrayList<>();
         if (MovieAndDirector.containsKey(directorName)){
            movieList=MovieAndDirector.get(directorName);
-           movieList.add(movieName);
-           MovieAndDirector.put(directorName,movieList);
         }
-        else {
-            movieList.add(movieName);
-            MovieAndDirector.put(directorName, movieList);
-        }
+        movieList.add(movieName);
+        MovieAndDirector.put(directorName,movieList);
     }
     public Movie getMovieByName(String name){
         return ListOfMovies.get(name);
@@ -44,7 +40,7 @@ public class MovieRepository {
         return MovieAndDirector.get(name);
     }
 
-    public List<String> findAllMovies(){
+    public List<String> getAllMovies(){
         List<String> allMovies=new ArrayList<>();
         for(Movie m:ListOfMovies.values()){
             allMovies.add(m.getName());
@@ -53,19 +49,18 @@ public class MovieRepository {
     }
 
     public void deleteDirectorByName(String name){
-        List<String>movieList=new ArrayList<>();
-        movieList=MovieAndDirector.get(name);
+        List<String>list=new ArrayList<>();
+        list=MovieAndDirector.get(name);
         MovieAndDirector.remove(name);
         ListOfDirectors.remove(name);
-
-        for(String movieName:movieList){
+        for(String movieName:list){
             ListOfMovies.remove(movieName);
         }
     }
 
     public void deleteAllDirectors(){
         for(String key:MovieAndDirector.keySet()){
-            MovieAndDirector.remove(key);
+            deleteDirectorByName(key);
         }
     }
 }
