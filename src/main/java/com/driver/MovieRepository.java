@@ -51,7 +51,14 @@ public class MovieRepository {
     }
 
     public void deleteDirectorByName(String name){
+        List<String>movieList=new ArrayList<>();
+        movieList=MovieAndDirector.get(name);
         MovieAndDirector.remove(name);
+        ListOfDirectors.remove(name);
+
+        for(String movieName:movieList){
+            ListOfMovies.remove(movieName);
+        }
     }
 
     public void deleteAllDirectors(){
