@@ -22,11 +22,15 @@ public class MovieRepository {
     }
     public void addMovieAndDirectorInDB(String directorName,String movieName ){
         List<String>movieList=new ArrayList<>();
-        if (MovieAndDirector.containsKey(directorName)){
+        if(MovieAndDirector.containsKey(directorName)){
            movieList=MovieAndDirector.get(directorName);
+            movieList.add(movieName);
+            MovieAndDirector.put(directorName,movieList);
         }
-        movieList.add(movieName);
-        MovieAndDirector.put(directorName,movieList);
+        else {
+            movieList.add(movieName);
+            MovieAndDirector.put(directorName, movieList);
+        }
     }
     public Movie getMovieByName(String name){
         return ListOfMovies.get(name);
